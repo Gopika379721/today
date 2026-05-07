@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>H. Gopika | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d1117;
+    --bg2: #161b22;
+    --bg3: #1c2330;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #3fb950;
+    --accent2: #58a6ff;
+    --accent3: #f78166;
+    --accent4: #d2a8ff;
+    --mono: 'DM Mono', monospace;
+    --serif: 'DM Serif Display', serif;
+    --sans: 'Figtree', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,17,23,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 60px;
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 7rem 2.5rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(63,185,80,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(88,166,255,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 760px; }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.6s 0.25s forwards;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent2); }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+    opacity: 0; animation: fadeUp 0.6s 0.4s forwards;
+  }
+  .hero-certs {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 0.6s 0.55s forwards;
+  }
+  .cert-badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid;
+    letter-spacing: 0.04em;
+  }
+  .cert-badge.green { border-color: rgba(63,185,80,0.4); color: var(--accent); background: rgba(63,185,80,0.07); }
+  .cert-badge.blue  { border-color: rgba(88,166,255,0.4); color: var(--accent2); background: rgba(88,166,255,0.07); }
+  .cert-badge.purple{ border-color: rgba(210,168,255,0.4); color: var(--accent4); background: rgba(210,168,255,0.07); }
+  .hero-links {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.6s 0.7s forwards;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 22px;
+    font-family: var(--sans);
+    font-size: 14px; font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: #0d1117; }
+  .btn-primary:hover { background: #4fd660; border-color: #4fd660; }
+  .btn-ghost { background: transparent; border-color: var(--border2); color: var(--muted); }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.3); color: var(--text); }
+
+  /* SECTION */
+  section { padding: 5rem 2.5rem; border-top: 1px solid var(--border); }
+  .section-inner { max-width: 860px; margin: 0 auto; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+  }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+  .skill-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+  .skill-card-icon {
+    font-size: 1.5rem; margin-bottom: 0.8rem;
+  }
+  .skill-card h3 {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--accent2);
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+  }
+  .skill-card ul { list-style: none; }
+  .skill-card ul li {
+    font-size: 13px; color: var(--muted); padding: 3px 0;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .skill-card ul li::before { content: '›'; color: var(--accent); font-size: 16px; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+  .project-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+  .project-year {
+    font-family: var(--mono);
+    font-size: 11px; color: var(--muted); letter-spacing: 0.08em;
+    margin-bottom: 0.8rem;
+  }
+  .project-card h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem; font-weight: 400;
+    margin-bottom: 1rem; color: var(--text);
+  }
+  .project-card p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
+  .project-stat {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono);
+    font-size: 12px;
+    background: rgba(63,185,80,0.1);
+    border: 1px solid rgba(63,185,80,0.25);
+    color: var(--accent);
+    padding: 4px 10px; border-radius: 6px;
+    margin-bottom: 0.6rem;
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+  .tag {
+    font-family: var(--mono); font-size: 11px;
+    background: var(--bg3); border: 1px solid var(--border);
+    color: var(--muted); padding: 3px 9px; border-radius: 5px;
+    letter-spacing: 0.03em;
+  }
+
+  /* EXPERIENCE / TIMELINE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 6px; bottom: 6px;
+    width: 1px; background: var(--border2);
+  }
+  .timeline-item { position: relative; margin-bottom: 2.5rem; padding-left: 1.5rem; }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -2.55rem; top: 8px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(63,185,80,0.18);
+  }
+  .timeline-date {
+    font-family: var(--mono); font-size: 12px;
+    color: var(--muted); letter-spacing: 0.06em; margin-bottom: 0.4rem;
+  }
+  .timeline-title { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.3rem; }
+  .timeline-sub { font-size: 14px; color: var(--accent2); margin-bottom: 0.7rem; }
+  .timeline-body { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .contact-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .contact-icon {
+    width: 38px; height: 38px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .contact-icon.g { background: rgba(247,129,102,0.12); color: var(--accent3); }
+  .contact-icon.li { background: rgba(88,166,255,0.12); color: var(--accent2); }
+  .contact-icon.gh { background: rgba(210,168,255,0.12); color: var(--accent4); }
+  .contact-icon.ph { background: rgba(63,185,80,0.12); color: var(--accent); }
+  .contact-label { font-size: 11px; color: var(--muted); font-family: var(--mono); letter-spacing: 0.06em; }
+  .contact-val { font-size: 14px; font-weight: 500; color: var(--text); word-break: break-all; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2.5rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 12px; color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">H.GOPIKA</span>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-tag">IT Graduate · Cloud & Linux Engineer</p>
+    <h1>Building resilient <em>infrastructure</em>,<br>one system at a time.</h1>
+    <p class="hero-desc">
+      Motivated IT graduate from Kerala with hands-on expertise in Linux system administration, AWS cloud computing, networking (CCNA), and web hosting. I troubleshoot complex systems, automate workflows, and build cloud-native infrastructure that scales.
+    </p>
+    <div class="hero-certs">
+      <span class="cert-badge green">RHCSA Certified</span>
+      <span class="cert-badge blue">AWS Solutions Architect</span>
+      <span class="cert-badge purple">CCNA 200-301</span>
+    </div>
+    <div class="hero-links">
+      <a href="#contact" class="btn btn-primary">Get in touch</a>
+      <a href="#projects" class="btn btn-ghost">View projects →</a>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label">Technical Expertise</p>
+    <h2 class="section-title">What I work with</h2>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🐧</div>
+        <h3>Linux Admin (RHCSA)</h3>
+        <ul>
+          <li>User & group management</li>
+          <li>LVM & disk partitioning</li>
+          <li>Apache & SSH setup</li>
+          <li>cPanel / WHM hosting</li>
+          <li>Process & package mgmt</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">☁️</div>
+        <h3>Cloud (AWS)</h3>
+        <ul>
+          <li>EC2 instance management</li>
+          <li>S3 storage configuration</li>
+          <li>IAM users, roles, policies</li>
+          <li>VPC, subnets, routing</li>
+          <li>Cloud database basics</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🌐</div>
+        <h3>Networking (CCNA)</h3>
+        <ul>
+          <li>OSI & TCP/IP protocols</li>
+          <li>IP addressing & subnetting</li>
+          <li>VLAN, NAT, ACL</li>
+          <li>RIP, OSPF, EIGRP routing</li>
+          <li>IPv4 & IPv6 fundamentals</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">⚙️</div>
+        <h3>Scripting & Dev</h3>
+        <ul>
+          <li>Python scripting & Flask</li>
+          <li>Bash automation</li>
+          <li>SQL & MySQL</li>
+          <li>HTML & CSS</li>
+          <li>Image processing (OpenCV)</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🛠️</div>
+        <h3>Tools & Platforms</h3>
+        <ul>
+          <li>GitHub & VS Code</li>
+          <li>VirtualBox</li>
+          <li>CentOS & Ubuntu</li>
+          <li>cPanel / WHM</li>
+          <li>DNS & email configuration</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-label">Portfolio</p>
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <p class="project-year">2025</p>
+        <h3>Blood Group Detection via Fingerprint</h3>
+        <p>A Flask-based web application that determines blood groups from fingerprint images using an image processing pipeline. The system analyzes dermatoglyphic patterns and cross-references with a SQL database for accurate classification.</p>
+        <div>
+          <span class="project-stat">87% Detection Accuracy</span><br>
+          <span class="project-stat">500+ Test Images</span>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Flask</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Image Processing</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <p class="project-year">2024</p>
+        <h3>Biometric Attendance via Facial Recognition</h3>
+        <p>An automated attendance management system leveraging OpenCV's LBPH algorithm. Features a full-stack implementation with a Python backend, MySQL database, and HTML/CSS frontend for managing attendance records in real time.</p>
+        <div>
+          <span class="project-stat">92% Recognition Accuracy</span><br>
+          <span class="project-stat">Works in varied lighting</span>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">HTML/CSS</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION & CERTS -->
+<section id="education">
+  <div class="section-inner">
+    <p class="section-label">Background</p>
+    <h2 class="section-title">Education & Certifications</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <p class="timeline-date">2021 – 2025</p>
+        <p class="timeline-title">B.Tech in Computer Science & Engineering</p>
+        <p class="timeline-sub">Rajadhani Institute of Engineering and Technology, Trivandrum, Kerala</p>
+        <p class="timeline-body">Gained a strong foundation in computer science principles, systems programming, and network fundamentals. Applied classroom concepts through real-world projects in image processing, biometrics, and web application development.</p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">Certification</p>
+        <p class="timeline-title">AWS Certified Solutions Architect – Associate</p>
+        <p class="timeline-sub">Amazon Web Services</p>
+        <p class="timeline-body">Validated expertise in designing distributed systems and cloud infrastructure on AWS, covering EC2, S3, VPC, IAM, and cloud-native architectures for high availability and fault tolerance.</p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">Certification</p>
+        <p class="timeline-title">RedHat Certified System Administrator (RHCSA)</p>
+        <p class="timeline-sub">Red Hat</p>
+        <p class="timeline-body">Demonstrated proficiency in essential Linux administration tasks including system management, storage configuration, user administration, security, and network configuration on Red Hat Enterprise Linux.</p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">Certification</p>
+        <p class="timeline-title">Cisco Certified Network Associate (CCNA 200-301)</p>
+        <p class="timeline-sub">Cisco</p>
+        <p class="timeline-body">Earned industry recognition for networking skills including IP routing, switching, VLANs, NAT/ACL, WAN protocols, and network automation fundamentals.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label">Say Hello</p>
+    <h2 class="section-title">Let's connect</h2>
+    <p style="color: var(--muted); margin-bottom: 2rem; max-width: 480px;">
+      I'm currently open to full-time roles in Linux/cloud infrastructure, system administration, or networking. Feel free to reach out!
+    </p>
+    <div class="contact-grid">
+      <a href="mailto:hgopika37@gmail.com" class="contact-card">
+        <div class="contact-icon g">✉</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-val">hgopika37@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:+918848714336" class="contact-card">
+        <div class="contact-icon ph">☎</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-val">+91 88487 14336</div>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/h-gopika-b64a21257" target="_blank" class="contact-card">
+        <div class="contact-icon li">in</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-val">h-gopika-b64a21257</div>
+        </div>
+      </a>
+      <a href="https://github.com/Gopika379721" target="_blank" class="contact-card">
+        <div class="contact-icon gh">⌥</div>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-val">github.com/Gopika379721</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Crafted with care · H. Gopika · Kollam, Kerala · 2025</p>
+</footer>
+
+</body>
+</html>
